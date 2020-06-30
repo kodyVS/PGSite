@@ -31,6 +31,28 @@
         <Bio />
       </div>
     </div>
+    <div class="header">
+      <h1>Join us!</h1>
+    </div>
+    <div class="content contact-form">
+      <form>
+        <div class="row">
+          <label for="mail">e-mail:</label>
+          <input v-model="mail" name="mail" />
+        </div>
+        <div class="row">
+          <label for="subject">subject:</label>
+          <input v-model="subject" name="subject" />
+        </div>
+        <div class="row">
+          <label for="message">message:</label>
+          <input v-model="message" name="message" />
+        </div>
+        <div class="row">
+          <button type="button" @click="onSendClicked">Send</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -39,11 +61,35 @@ import Bio from "../components/Bio.vue";
 export default {
   components: {
     Bio
+  },
+  data: function() {
+    return {
+      mail: "",
+      subject: "",
+      message: ""
+    };
+  },
+  methods: {
+    onSendClicked: function() {
+      console.log(this.mail, this.subject, this.message);
+    }
   }
 };
 </script>
 
 <style>
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.row {
+  display: flex;
+  justify-content: center;
+}
+label {
+  margin-right: 1em;
+}
 .bios {
   display: flex;
   justify-content: space-evenly;
@@ -72,13 +118,13 @@ export default {
   overflow-x: scroll;
 }
 ::-webkit-scrollbar {
-    width: 0px;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-    background: var(--bg-color1);
-    border-radius: 1em;
+  background: var(--bg-color1);
+  border-radius: 1em;
 }
 .scrollable > .bio {
   flex: 0 0 auto;
